@@ -14,7 +14,6 @@ function bucketize(string, n) {
             buckets.push(phrase.trim());
             phrase = eachWord[i] + ' ';
         }
-
     }
 
     return buckets;
