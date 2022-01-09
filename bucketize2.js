@@ -7,29 +7,31 @@ function bucketize(input, n) {
 
     var currWord = words[0];
 
-    // if currWord length is less than n and if phrase is empty
-    if(phrase.length === 0 && currWord.length <= n) {
-      // add currWord to phrase
-      // remove currWord from words array
-    // otherwise
-      // return empty array
+
+    if(currWord.length <= n  && phrase.length === 0) {
+      phrase += words.shift() + ' ';
+    } else {
+      return [];
     }
 
-    // if phrase length is greater than 0
-      // if the length of phrase + the length of currWord is less than or equal to n
-        // add currWord to phrase
-        // remove currWord from words array
-      // otherwise
-        // phrase is full, add phrase to bucket
-        // phrase now equals currWord
+    while(phrase.length > 0) {
+      if(phrase.length + currWord.length <= n) {
+        phrase += words.shift() + ' ';
+      } else {
+        bucket.push(phrase.trim());
+      }
+    }
 
-    // if input has any words left in it
-      // return an empty array
-    // otherwise
-      // return buckets
-
+    if(words.length > 0) {
+      return [];
+    } else {
+      return buckets;
+    }
 }
 
 // TEST CODE
-bucketize('', 3)
-bucketize('she sells sea shells by the sea', 2)
+var test1 = bucketize('she sells sea shells by the sea', 10);
+// var test2 = bucketize('she sells sea shells by the sea', 2);
+
+console.log(test1);
+// console.log(test2);
